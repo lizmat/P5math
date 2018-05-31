@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module P5math:ver<0.0.1>:auth<cpan:ELIZABETH>;
+unit module P5math:ver<0.0.2>:auth<cpan:ELIZABETH>;
 
 proto sub abs(|) is export {*}
 multi sub abs()       { CALLERS::<$_>.abs }
@@ -37,7 +37,9 @@ multi sub sqrt(\value) { value.sqrt         }
 sub crypt(Str() $plaintext, Str() $salt --> Str:D) is export {
     use NativeCall;
     sub _crypt(Str is rw, Str is rw --> Str) is native is symbol<crypt> {*}
-    _crypt($plaintext, $salt)
+
+    # need try, because some systems don't have 'crypt' anymore
+    try _crypt($plaintext, $salt)
 }
 
 =begin pod
