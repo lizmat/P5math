@@ -67,6 +67,8 @@ is a built-in native type in Perl 6.
 Other functions may not be callable without actually specifying (no)
 parameters.
 
+The C<crypt> function will return C<Nil> if it is not supported by the OS.
+
 =head1 ORIGINAL PERL 5 DOCUMENTATION
 
     abs VALUE
