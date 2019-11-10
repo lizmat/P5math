@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module P5math:ver<0.0.2>:auth<cpan:ELIZABETH>;
+unit module P5math:ver<0.0.3>:auth<cpan:ELIZABETH>;
 
 proto sub abs(|) is export {*}
 multi sub abs()       { CALLERS::<$_>.abs }
@@ -46,7 +46,7 @@ sub crypt(Str() $plaintext, Str() $salt --> Str:D) is export {
 
 =head1 NAME
 
-P5math - Port of Perl 5's math built-ins to Perl 6
+P5math - Port of Perl's math built-ins to Raku
 
 =head1 SYNOPSIS
 
@@ -55,14 +55,14 @@ P5math - Port of Perl 5's math built-ins to Perl 6
 =head1 DESCRIPTION
 
 This module tries to mimic the behaviour of the C<abs>, C<cos>, C<crypt>,
-C<exp>, C<int>, C<log>, C<rand>, C<sin> and C<sqrt> functions of Perl 5 as
+C<exp>, C<int>, C<log>, C<rand>, C<sin> and C<sqrt> functions of Perl as
 closely as possible.
 
 =head1 PORTING CAVEATS
 
 As of this writing (2018.05), it is B<not> possible to actually use C<int>
 in your code because of code generation issue caused by the fact that C<int>
-is a built-in native type in Perl 6.
+is a built-in native type in Raku.
 
 Other functions may not be callable without actually specifying (no)
 parameters.
@@ -244,9 +244,9 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018-2019 Elizabeth Mattijsen
 
-Re-imagined from Perl 5 as part of the CPAN Butterfly Plan.
+Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

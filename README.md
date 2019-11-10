@@ -1,9 +1,7 @@
-[![Build Status](https://travis-ci.org/lizmat/P5math.svg?branch=master)](https://travis-ci.org/lizmat/P5math)
-
 NAME
 ====
 
-P5math - Port of Perl 5's math built-ins to Perl 6
+P5math - Port of Perl's math built-ins to Raku
 
 SYNOPSIS
 ========
@@ -13,14 +11,16 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-This module tries to mimic the behaviour of the `abs`, `cos`, `crypt`, `exp`, `int`, `log`, `rand`, `sin` and `sqrt` functions of Perl 5 as closely as possible.
+This module tries to mimic the behaviour of the `abs`, `cos`, `crypt`, `exp`, `int`, `log`, `rand`, `sin` and `sqrt` functions of Perl as closely as possible.
 
 PORTING CAVEATS
 ===============
 
-As of this writing (2018.05), it is **not** possible to actually use `int` in your code because of code generation issue caused by the fact that `int` is a built-in native type in Perl 6.
+As of this writing (2018.05), it is **not** possible to actually use `int` in your code because of code generation issue caused by the fact that `int` is a built-in native type in Raku.
 
 Other functions may not be callable without actually specifying (no) parameters.
+
+The `crypt` function will return `Nil` if it is not supported by the OS.
 
 ORIGINAL PERL 5 DOCUMENTATION
 =============================
@@ -199,9 +199,9 @@ Source can be located at: https://github.com/lizmat/P5math . Comments and Pull R
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018-2019 Elizabeth Mattijsen
 
-Re-imagined from Perl 5 as part of the CPAN Butterfly Plan.
+Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
