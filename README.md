@@ -1,7 +1,7 @@
 NAME
 ====
 
-P5math - Port of Perl's math built-ins to Raku
+Raku port of Perl's math built-ins
 
 SYNOPSIS
 ========
@@ -11,16 +11,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-This module tries to mimic the behaviour of the `abs`, `cos`, `crypt`, `exp`, `int`, `log`, `rand`, `sin` and `sqrt` functions of Perl as closely as possible.
-
-PORTING CAVEATS
-===============
-
-As of this writing (2018.05), it is **not** possible to actually use `int` in your code because of code generation issue caused by the fact that `int` is a built-in native type in Raku.
-
-Other functions may not be callable without actually specifying (no) parameters.
-
-The `crypt` function will return `Nil` if it is not supported by the OS.
+This module tries to mimic the behaviour of Perl's `abs`, `cos`, `crypt`, `exp`, `int`, `log`, `rand`, `sin` and `sqrt` builtins as closely as possible in the Raku Programming Language..
 
 ORIGINAL PERL 5 DOCUMENTATION
 =============================
@@ -189,6 +180,34 @@ ORIGINAL PERL 5 DOCUMENTATION
                 use Math::Complex;
                 print sqrt(-4);    # prints 2i
 
+PORTING CAVEATS
+===============
+
+Can not use int()
+-----------------
+
+As of this writing (2020.10), it is **not** possible to actually use `int` in your code because of code generation issue caused by the fact that `int` is a built-in native type in Raku.
+
+crypt() not supported on all platforms
+--------------------------------------
+
+The `crypt` function will return `Nil` if it is not supported by the OS.
+
+$_ no longer accessible from caller's scope
+-------------------------------------------
+
+In future language versions of Raku, it will become impossible to access the `$_` variable of the caller's scope, because it will not have been marked as a dynamic variable. So please consider changing:
+
+    cos;
+
+to either:
+
+    cos($_);
+
+or, using the subroutine as a method syntax, with the prefix `.` shortcut to use that scope's `$_` as the invocant:
+
+    .&cos;
+
 AUTHOR
 ======
 
@@ -199,7 +218,7 @@ Source can be located at: https://github.com/lizmat/P5math . Comments and Pull R
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 

@@ -1,6 +1,6 @@
-use v6.c;
+use v6.d;
 
-unit module P5math:ver<0.0.3>:auth<cpan:ELIZABETH>;
+unit module P5math:ver<0.0.4>:auth<cpan:ELIZABETH>;
 
 proto sub abs(|) is export {*}
 multi sub abs()       { CALLERS::<$_>.abs }
@@ -46,7 +46,7 @@ sub crypt(Str() $plaintext, Str() $salt --> Str:D) is export {
 
 =head1 NAME
 
-P5math - Port of Perl's math built-ins to Raku
+Raku port of Perl's math built-ins
 
 =head1 SYNOPSIS
 
@@ -54,20 +54,9 @@ P5math - Port of Perl's math built-ins to Raku
 
 =head1 DESCRIPTION
 
-This module tries to mimic the behaviour of the C<abs>, C<cos>, C<crypt>,
-C<exp>, C<int>, C<log>, C<rand>, C<sin> and C<sqrt> functions of Perl as
-closely as possible.
-
-=head1 PORTING CAVEATS
-
-As of this writing (2018.05), it is B<not> possible to actually use C<int>
-in your code because of code generation issue caused by the fact that C<int>
-is a built-in native type in Raku.
-
-Other functions may not be callable without actually specifying (no)
-parameters.
-
-The C<crypt> function will return C<Nil> if it is not supported by the OS.
+This module tries to mimic the behaviour of Perl's C<abs>, C<cos>, C<crypt>,
+C<exp>, C<int>, C<log>, C<rand>, C<sin> and C<sqrt> builtins as closely
+as possible in the Raku Programming Language..
 
 =head1 ORIGINAL PERL 5 DOCUMENTATION
 
@@ -235,6 +224,35 @@ The C<crypt> function will return C<Nil> if it is not supported by the OS.
                 use Math::Complex;
                 print sqrt(-4);    # prints 2i
 
+=head1 PORTING CAVEATS
+
+=head2 Can not use int()
+
+As of this writing (2020.10), it is B<not> possible to actually use C<int>
+in your code because of code generation issue caused by the fact that C<int>
+is a built-in native type in Raku.
+
+=head2 crypt() not supported on all platforms
+
+The C<crypt> function will return C<Nil> if it is not supported by the OS.
+
+=head2 $_ no longer accessible from caller's scope
+
+In future language versions of Raku, it will become impossible to access the
+C<$_> variable of the caller's scope, because it will not have been marked as
+a dynamic variable.  So please consider changing:
+
+    cos;
+
+to either:
+
+    cos($_);
+
+or, using the subroutine as a method syntax, with the prefix C<.> shortcut
+to use that scope's C<$_> as the invocant:
+
+    .&cos;
+
 =head1 AUTHOR
 
 Elizabeth Mattijsen <liz@wenzperl.nl>
@@ -244,7 +262,7 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
@@ -252,4 +270,4 @@ This library is free software; you can redistribute it and/or modify it under th
 
 =end pod
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

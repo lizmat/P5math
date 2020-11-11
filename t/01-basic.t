@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 use Test;
 
 use P5math;
@@ -19,4 +19,4 @@ for &abs, &cos, &exp, &log, &sin, &sqrt -> &func {
 
 is crypt("foo","ba"), crypt("foo","ba"), 'does crypt give the same';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4
