@@ -2,6 +2,12 @@ Revision history for P5math
 
 {{$NEXT}}
 
+0.0.5  2021-09-09T12:56:50+02:00
+    - Change file extension to .rakumod
+    - Migrate to zef ecosystem
+    - Update email address
+    - Update copyright year
+
 0.0.4  2020-11-11T21:19:08+01:00
     - Change name of distribution
     - Force to highest possible Raku version
