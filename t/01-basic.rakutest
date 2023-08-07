@@ -14,7 +14,8 @@ ok 0 < &rand(42) < 42, 'did we get a random number between 0 and 42';
 
 for &abs, &cos, &exp, &log, &sin, &sqrt -> &func {
     $_ = 3.14;
-    is func($_), func(), "Did we get it right for &func.name()"
+    my $result := func();
+    is func($_), $result, "Did we get it right for &func.name()"
 }
 
 is crypt("foo","ba"), crypt("foo","ba"), 'does crypt give the same';

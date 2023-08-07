@@ -1,25 +1,25 @@
 use v6.d;
 
-unit module P5math:ver<0.0.5>:auth<zef:lizmat>;
+unit module P5math:ver<0.0.6>:auth<zef:lizmat>;
 
 proto sub abs(|) is export {*}
-multi sub abs()       { CALLERS::<$_>.abs }
+multi sub abs()       { CALLER::LEXICAL::<$_>.abs }
 multi sub abs(\value) { value.abs         }
 
 proto sub cos(|) is export {*}
-multi sub cos()       { CALLERS::<$_>.cos }
+multi sub cos()       { CALLER::LEXICAL::<$_>.cos }
 multi sub cos(\value) { value.cos         }
 
 proto sub exp(|) is export {*}
-multi sub exp()       { CALLERS::<$_>.exp }
+multi sub exp()       { CALLER::LEXICAL::<$_>.exp }
 multi sub exp(\value) { value.exp         }
 
 proto sub int(|) is export {*}
-multi sub int()       { CALLERS::<$_>.Int }
+multi sub int()       { CALLER::LEXICAL::<$_>.Int }
 multi sub int(\value) { value.Int         }
 
 proto sub log(|) is export {*}
-multi sub log()       { CALLERS::<$_>.log }
+multi sub log()       { CALLER::LEXICAL::<$_>.log }
 multi sub log(\value) { value.log         }
 
 proto sub rand(|) is export {*}
@@ -27,11 +27,11 @@ multi sub rand(            --> Num:D) { 1.rand    }
 multi sub rand(Cool:D $num --> Num:D) { $num.rand }
 
 proto sub sin(|) is export {*}
-multi sub sin()       { CALLERS::<$_>.sin }
+multi sub sin()       { CALLER::LEXICAL::<$_>.sin }
 multi sub sin(\value) { value.sin         }
 
 proto sub sqrt(|) is export {*}
-multi sub sqrt()       { CALLERS::<$_>.sqrt }
+multi sub sqrt()       { CALLER::LEXICAL::<$_>.sqrt }
 multi sub sqrt(\value) { value.sqrt         }
 
 sub crypt(Str() $plaintext, Str() $salt --> Str:D) is export {
@@ -257,12 +257,16 @@ to use that scope's C<$_> as the invocant:
 
 Elizabeth Mattijsen <liz@raku.rocks>
 
+If you like this module, or what I’m doing more generally, committing to a
+L<small sponsorship|https://github.com/sponsors/lizmat/>  would mean a great
+deal to me!
+
 Source can be located at: https://github.com/lizmat/P5math . Comments and
 Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018, 2019, 2020, 2021 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021, 2023 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
